@@ -1,7 +1,7 @@
 import { Client, Message, GuildMember } from 'discord.js';
-import { fromEvent, merge, Observable, MonoTypeOperatorFunction, OperatorFunction, pipe, UnaryFunction } from 'rxjs'
+import { fromEvent, merge, Observable, MonoTypeOperatorFunction, OperatorFunction } from 'rxjs'
 import { filter, map } from 'rxjs/operators';
-import {Database} from 'sqlite3'
+import { Database } from 'sqlite3'
 import { config as initEnv } from 'dotenv';
 initEnv()
 
