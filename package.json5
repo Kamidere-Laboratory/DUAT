@@ -1,0 +1,25 @@
+{
+  name: "name",
+  version: "1.0.0",
+  description: "",
+  main: "index.js",
+  scripts: {
+    init: "yarn add -D \
+    @types/debug \
+    @types/node \
+    @typescript-eslint/eslint-plugin \
+    @typescript-eslint/parser \
+    debug \
+    eslint \
+    eslint-config-airbnb-base \
+    eslint-plugin-import \
+    eslint-scope \
+    prettier \
+    prettier-eslint \
+    typescript",
+    start: "tsc && node ./dist/index.js",
+    lint: "eslint ."
+  },
+  author: "RunAge",
+  license: "MIT"
+}

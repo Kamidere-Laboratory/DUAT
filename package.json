@@ -1,0 +1,34 @@
+{
+  "name": "name",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "init": "yarn add -D     @types/debug     @types/node     @typescript-eslint/eslint-plugin     @typescript-eslint/parser     debug     eslint     eslint-config-airbnb-base     eslint-plugin-import     eslint-scope     prettier     prettier-eslint     typescript",
+    "start": "tsc && node ./dist/index.js",
+    "lint": "eslint ."
+  },
+  "author": "RunAge",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/debug": "^4.1.5",
+    "@types/node": "^13.1.4",
+    "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "@typescript-eslint/parser": "^2.15.0",
+    "debug": "^4.1.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-scope": "^5.0.0",
+    "prettier": "^1.19.1",
+    "prettier-eslint": "^9.0.1",
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "@types/sqlite3": "^3.1.6",
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0",
+    "rxjs": "^6.5.4",
+    "sqlite3": "^4.1.1"
+  }
+}
