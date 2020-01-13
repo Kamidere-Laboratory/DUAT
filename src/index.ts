@@ -15,9 +15,7 @@ interface TrackedUser {
   ts: number;
 }
 
-const elementAtIndex = (i: number): OperatorFunction<GuildMember[] | Message[], Message | GuildMember> => pipe(
-  map(arr => arr[i]),
-)
+const elementAtIndex = (i: number): OperatorFunction<GuildMember[] | Message[], Message | GuildMember> => map(arr => arr[i])
 
 const filterGuild = (): MonoTypeOperatorFunction<Message | GuildMember> => filter((data) => {
   return data.guild.id === process.env.DSC_GUILD;
