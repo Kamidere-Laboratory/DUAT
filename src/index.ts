@@ -41,7 +41,7 @@ client
   });
 
 const events$: Observable<TrackedUser> = merge(
-  fromEvent<Message>(client, 'message').pipe(filterGuild() ,unifyData()),
+  fromEvent<Message>(client, 'message').pipe(filterGuild(), unifyData()),
   fromEvent<Message>(client, 'messageDelete').pipe(filterGuild(), unifyData()),
   fromEvent<Message[]>(client, 'messageUpdate').pipe(elementAtIndex(1), filterGuild(), unifyData()),
   fromEvent<GuildMember[]>(client, 'voiceStateUpdate').pipe(elementAtIndex(1), filterGuild(), unifyData()),

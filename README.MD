@@ -10,3 +10,6 @@ Track voice joining/leaving
 # ToDo
 Track reactions  
 Wrap Sqlite3 in to rxjs  
+
+# Thanks to
+@soanvig for CR and explaining in RxJS
