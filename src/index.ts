@@ -21,6 +21,10 @@ const filterGuild = (): MonoTypeOperatorFunction<Message | GuildMember> => filte
   return data.guild.id === process.env.DSC_GUILD;
 })
 
+const filterBots = (): MonoTypeOperatorFunction<Message | GuildMember> => filter((data) => {
+  return data instanceof Message ? !data.author.bot : !data.user.bot
+})
+
 
 const unifyData = (): OperatorFunction<Message | GuildMember, TrackedUser> => map((data) => {
   return {
@@ -41,10 +45,10 @@ client
   });
 
 const events$: Observable<TrackedUser> = merge(
-  fromEvent<Message>(client, 'message').pipe(filterGuild(), unifyData()),
-  fromEvent<Message>(client, 'messageDelete').pipe(filterGuild(), unifyData()),
-  fromEvent<Message[]>(client, 'messageUpdate').pipe(elementAtIndex(1), filterGuild(), unifyData()),
-  fromEvent<GuildMember[]>(client, 'voiceStateUpdate').pipe(elementAtIndex(1), filterGuild(), unifyData()),
+  fromEvent<Message>(client, 'message').pipe(filterBots(), filterGuild(), unifyData()),
+  fromEvent<Message>(client, 'messageDelete').pipe(filterBots(), filterGuild(), unifyData()),
+  fromEvent<Message[]>(client, 'messageUpdate').pipe(elementAtIndex(1), filterBots(), filterGuild(), unifyData()),
+  fromEvent<GuildMember[]>(client, 'voiceStateUpdate').pipe(elementAtIndex(1), filterBots(), filterGuild(), unifyData()),
 )
 
 events$
@@ -62,5 +66,4 @@ events$
       console.error(error)
     }
   })
-
 client.login(process.env.DSC_TOKEN);
