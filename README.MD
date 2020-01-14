@@ -9,7 +9,10 @@ Track voice joining/leaving
 
 # ToDo
 Track reactions  
-Wrap Sqlite3 in to rxjs  
+Tracking DB modes: 
+  - Sqlite3 for only check last activity
+  - Graphite for metrics and graphana
+
 
 # Thanks to
 @soanvig for CR and explaining in RxJS
