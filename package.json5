@@ -20,6 +20,11 @@
     start: "tsc && node ./dist/index.js",
     lint: "eslint ."
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
   author: "RunAge",
   license: "MIT"
 }
