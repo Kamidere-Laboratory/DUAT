@@ -1,12 +1,12 @@
 import { Client, Message, GuildMember } from 'discord.js';
 import { fromEvent, merge, Observable, MonoTypeOperatorFunction, OperatorFunction } from 'rxjs'
 import { filter, map } from 'rxjs/operators';
-import { Database } from 'sqlite3'
+import { Database, DatabaseType } from './database';
+
+import debug from 'debug'
 import { config as initEnv } from 'dotenv';
 initEnv()
-
-const trackingDatabase = new Database('tracking.db');
-trackingDatabase.run('CREATE TABLE IF NOT EXISTS tracking (ID INTEGER PRIMARY KEY AUTOINCREMENT, user TEXT UNIQUE NOT NULL, ts INTEGER NOT NULL);');
+const logger = debug('DUAT:Bot')
 
 const client = new Client()
 
@@ -15,33 +15,29 @@ interface TrackedUser {
   ts: number;
 }
 
-const elementAtIndex = (i: number): OperatorFunction<GuildMember[] | Message[], Message | GuildMember> => map(arr => arr[i])
+const elementAtIndex = (i: number):
+  OperatorFunction<GuildMember[] | Message[], Message | GuildMember> => map(arr => arr[i])
 
-const filterGuild = (): MonoTypeOperatorFunction<Message | GuildMember> => filter((data) => {
-  return data.guild.id === process.env.DSC_GUILD;
-})
+const filterGuild = (): MonoTypeOperatorFunction<Message | GuildMember> => 
+  filter((data) => {
+    return data.guild.id === process.env.DSC_GUILD;
+  });
 
-const filterBots = (): MonoTypeOperatorFunction<Message | GuildMember> => filter((data) => {
-  return data instanceof Message ? !data.author.bot : !data.user.bot
-})
-
+const filterBots = (): MonoTypeOperatorFunction<Message | GuildMember> => 
+  filter((data) => {
+    return data instanceof Message ? !data.author.bot : !data.user.bot
+  });
 
 const unifyData = (): OperatorFunction<Message | GuildMember, TrackedUser> => map((data) => {
   return {
     id: data instanceof Message ? data.author.id : data.id,
     ts: Date.now(),
   }
-})
+});
 
 client
   .on('ready', () => {
-  console.log('Ready for tracking!');
-  client.user.setPresence({
-    game: {
-      name: 'you!',
-      type: 'WATCHING'
-    }
-  })
+  logger('Ready for tracking!');
   });
 
 const events$: Observable<TrackedUser> = merge(
@@ -53,17 +49,7 @@ const events$: Observable<TrackedUser> = merge(
 
 events$
   .subscribe((data) => {
-    try {
-      trackingDatabase.serialize(() => {
-        trackingDatabase.prepare(`INSERT INTO tracking (user, ts) VALUES (?,?);`).run([data.id, data.ts], (err: {
-          errno: number;
-          code: string;
-        }) => {
-          if(err && err.errno === 19) trackingDatabase.prepare(`UPDATE tracking SET ts=? WHERE user=?;`).run(data.ts, data.id);
-        })
-      })
-    } catch(error) {
-      console.error(error)
-    }
-  })
+    logger(data)
+  });
+
 client.login(process.env.DSC_TOKEN);

@@ -4,7 +4,8 @@
   description: "",
   main: "index.js",
   scripts: {
-    init: "yarn add -D \
+
+    new: "yarn add -D \
     @types/debug \
     @types/node \
     @typescript-eslint/eslint-plugin \
@@ -16,15 +17,34 @@
     eslint-scope \
     prettier \
     prettier-eslint \
-    typescript",
-    start: "tsc && node ./dist/index.js",
-    lint: "eslint ."
+    typescript \
+    ts-node-dev \
+    dotenv \
+    @commitlint/config-conventional \
+    @commitlint/cli",
+    
+    genPackageJson: "json5 -s 2 -o package.json package.json5",
+    prebuild: "eslint --fix-dry-run --fix-type \"problem, suggestion, layout\" --max-warnings 0 --color --cache src/**/*",
+    build: "tsc",
+    start: "node ./dist/index.js",
+    lint: "eslint --fix-dry-run --fix-type \"problem, suggestion, layout\" --max-warnings 0 --color --cache src/**/*",
+    debug: 'ts-node-dev .'
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint"
+  husky: {
+    hooks: {
+      commit-msg: "commitlint -E HUSKY_GIT_PARAMS",
+      pre-commit: "yarn lint"
     }
   },
-  author: "RunAge",
+  author: {
+    name: "Kamide.re Laboratory",
+    url: "https://gitlab.com/kamidere-laboratory"
+  },
+  contributors: [
+    {
+      name: "Robert \"RunAge\" Gajda",
+      url: "https://gitlab.com/RunAge"
+    }
+  ],
   license: "MIT"
 }
