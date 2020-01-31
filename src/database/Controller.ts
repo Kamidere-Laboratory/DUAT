@@ -15,6 +15,7 @@ interface GraphiteOptions {
   url: string;
   path: string;
   table: string;
+  update: number;
   creditionals: {
     login: string;
     password: string;

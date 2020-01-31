@@ -46,7 +46,7 @@ const events$: Observable<TrackedUser> = merge(
   fromEvent<Message[]>(client, 'messageUpdate').pipe(elementAtIndex(1), filterBots(), filterGuild(), unifyData()),
   fromEvent<GuildMember[]>(client, 'voiceStateUpdate').pipe(elementAtIndex(1), filterBots(), filterGuild(), unifyData()),
 )
-
+Database.create(DatabaseType.Graphite, {}) // Error is there!
 events$
   .subscribe((data) => {
     logger(data)
