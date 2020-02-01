@@ -2,3 +2,5 @@ node_modules/
 dist/
 .env
 tracking.db
+
+yarn-error.log
