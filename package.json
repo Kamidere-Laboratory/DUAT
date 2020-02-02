@@ -2,10 +2,11 @@
   "name": "name",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "init": "yarn add -D     @types/debug     @types/node     @typescript-eslint/eslint-plugin     @typescript-eslint/parser     debug     eslint     eslint-config-airbnb-base     eslint-plugin-import     eslint-scope     prettier     prettier-eslint     typescript",
-    "start": "tsc && node ./dist/index.js",
+    "start": "ts-node ./src/index.ts",
+    "debug": "ts-node-dev --inspect -- ./src/index.ts",
     "build": "tsc",
     "lint": "eslint --fix-dry-run --fix-type \"problem, suggestion, layout\" --max-warnings 0 --color --cache src/**/*"
   },
@@ -23,6 +24,7 @@
     "@types/debug": "^4.1.5",
     "@types/node": "^13.1.4",
     "@types/ramda": "^0.26.40",
+    "@types/sqlite3": "^3.1.6",
     "@typescript-eslint/eslint-plugin": "^2.15.0",
     "@typescript-eslint/parser": "^2.15.0",
     "debug": "^4.1.1",
@@ -32,16 +34,19 @@
     "eslint-plugin-import": "^2.19.1",
     "eslint-scope": "^5.0.0",
     "husky": "^4.2.1",
+    "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.7.4"
   },
   "dependencies": {
-    "@discordjs/uws": "^10.149.0",
-    "@types/sqlite3": "^3.1.6",
-    "discord.js": "^11.5.1",
-    "dotenv": "^8.2.0",
     "graphite-udp": "^1.2.0",
     "ramda": "^0.26.1",
-    "rxjs": "^6.5.4",
-    "sqlite3": "^4.1.1"
+    "rxjs": "^6.5.4"
+  },
+  "peerDependencies": {
+    "ts-node": "^8.6.2",
+    "discord.js": "^11.5.1",
+    "sqlite3": "^4.1.1",
+    "@discordjs/uws": "^10.149.0",
+    "dotenv": "^8.2.0"
   }
 }
