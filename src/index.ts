@@ -1,9 +1,9 @@
 import { Client } from 'discord.js';
 import { config as initEnv } from 'dotenv';
-import Tracker from './Tracker';
+import Tracker, {TrackedUser} from './Tracker';
 initEnv()
 
-const client = new Client()
+const client = new Client();
 
 client
   .on('ready', () => {
@@ -14,7 +14,9 @@ client
         type: 'WATCHING'
       }
     })
-    Tracker(client);
+    Tracker(client).subscribe((user: TrackedUser) => {
+      console.log(user);
+    });
   });
 
 client.login(process.env.DSC_TOKEN);

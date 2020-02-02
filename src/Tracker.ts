@@ -2,7 +2,7 @@ import { Client, Message, GuildMember } from 'discord.js';
 import { fromEvent, merge, Observable, MonoTypeOperatorFunction, OperatorFunction } from 'rxjs'
 import { filter, map } from 'rxjs/operators';
 
-interface TrackedUser {
+export interface TrackedUser {
   readonly id: string;
   readonly ts: number;
   readonly guildId: string;
