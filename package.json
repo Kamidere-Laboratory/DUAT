@@ -46,14 +46,11 @@
     "typescript": "^3.7.4"
   },
   "dependencies": {
-    "graphite-udp": "^1.2.0",
-    "ramda": "^0.26.1",
     "rxjs": "^6.5.4"
   },
   "peerDependencies": {
     "ts-node": "^8.6.2",
     "discord.js": "^11.5.1",
-    "sqlite3": "^4.1.1",
     "@discordjs/uws": "^10.149.0",
     "dotenv": "^8.2.0"
   }
