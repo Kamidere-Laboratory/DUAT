@@ -1,7 +1,7 @@
 ## Discord Users Activity Tracker [DUAT]
-Track users activity on guild specified in process enviromental  
-`DSC_TOKEN=TOKEN`  
-`DSC_GUILD=GUILDID`  
+Bot extension.
+
+Sample code in sample.ts
 
 # Features
 Track creating/editing/deleting messeges  
