@@ -1,6 +1,6 @@
 {
   "name": "@kamidere/duat",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Discord Users Activity Tracker - Bot extension",
   "main": "./dist/index.js",
   "scripts": {
@@ -57,12 +57,16 @@
   },
   "types": "dist/index.d.ts",
   "files": [
+    "dist/index.d.ts",
+    "dist/Tracker.d.ts",
     "dist/index.js",
-    "dist/Tracker.js"
+    "dist/index.js.map",
+    "dist/Tracker.js",
+    "dist/Tracker.js.map"
   ],
   "repository": {
     "type": "git",
-    "url": "git://gitlab.com/kamidere-laboratory/duat.git"
+    "url": "https://gitlab.com/kamidere-laboratory/duat.git"
   },
   "keywords": [
     "Discord",
