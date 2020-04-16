@@ -13,34 +13,34 @@ const elementAtIndex = (i: number): OperatorFunction<
   Message | GuildMember
 > => map(arr => arr[i])
 
-const filterTextChannel = (): MonoTypeOperatorFunction<Message | GuildMember> => {
+const filterTextChannel = (): MonoTypeOperatorFunction<Message | GuildMember | undefined> => {
   return filter((data) => {
-    if(data instanceof Message) {
+    if (data instanceof Message) {
       return data.channel.type === 'text';
     }
     return true;
   })
 }
 
-const filterGuild = (guild?: string): MonoTypeOperatorFunction<Message | GuildMember> => {
+const filterGuild = (guild?: string): MonoTypeOperatorFunction<Message | GuildMember | undefined> => {
   return filter((data) => {
-    if(!guild) return true;
-    return data.guild.id === guild;
+    if (!guild) return true;
+    return data?.guild?.id === guild;
   })
 }
 
-const filterBots = (): MonoTypeOperatorFunction<Message | GuildMember> => {
+const filterBots = (): MonoTypeOperatorFunction<Message | GuildMember | undefined> => {
   return filter((data) => {
-    return data instanceof Message ? !data.author.bot : !data.user.bot
+    return data instanceof Message ? !data.author.bot : !data?.user.bot
   })
 }
 
-const unifyData = (): OperatorFunction<Message | GuildMember, TrackedUser> => {
+const unifyData = (): OperatorFunction<Message | GuildMember | undefined, TrackedUser> => {
   return map((data) => {
     return {
-      id: data instanceof Message ? data.author.id : data.id,
+      id: data instanceof Message ? data.author.id : data?.id || '0',
       ts: Date.now(),
-      guildId: data.guild.id,
+      guildId: data?.guild?.id || '0',
     }
   })
 }
