@@ -31,7 +31,8 @@ const filterGuild = (guild?: string): MonoTypeOperatorFunction<Message | GuildMe
 
 const filterBots = (): MonoTypeOperatorFunction<Message | GuildMember | undefined> => {
   return filter((data) => {
-    return data instanceof Message ? !data.author.bot : !data?.user?.bot
+    if (!data) return false;
+    return data instanceof Message ? !data?.author?.bot : !data?.user?.bot
   })
 }
 
