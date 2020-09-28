@@ -1,6 +1,6 @@
 {
   "name": "@kamidere/duat",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Discord Users Activity Tracker - Bot extension",
   "main": "./dist/index.js",
   "scripts": {
