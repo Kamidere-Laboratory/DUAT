@@ -1,1 +1,3 @@
-export * from './Tracker';
+import duat from './Tracker'
+
+export default duat;

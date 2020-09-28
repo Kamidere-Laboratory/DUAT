@@ -5,6 +5,7 @@ import { filter, map } from 'rxjs/operators';
 export interface TrackedUser {
   readonly id: string;
   readonly ts: number;
+  readonly channelId: string;
   readonly guildId: string;
 };
 
@@ -41,6 +42,7 @@ const unifyData = (): OperatorFunction<Message | GuildMember | undefined, Tracke
     return {
       id: data instanceof Message ? data.author.id : data?.id || '0',
       ts: Date.now(),
+      channelId: data instanceof Message ? data.channel.id : '0',
       guildId: data?.guild?.id || '0',
     }
   })
